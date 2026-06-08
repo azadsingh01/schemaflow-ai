@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  apps      App[]
+}
+
+model App {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+  schemaJson  Json
+  createdAt   DateTime     @default(now())
+  userId      String
+  user        User         @relation(fields: [userId], references: [id])
+  submissions Submission[]
+}
+
+model Submission {
+  id        String   @id @default(cuid())
+  data      Json
+  createdAt DateTime @default(now())
+  appId     String
+  app       App      @relation(fields: [appId], references: [id])
+}
