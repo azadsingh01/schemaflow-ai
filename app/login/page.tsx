@@ -1,28 +1,32 @@
 "use client";
 
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
+  const result = await signIn("credentials", {
+    email,
+    password,
+    redirect: false,
+  });
 
-    const data = await res.json();
-    alert(data.message);
-  };
+  if (result?.error) {
+    alert("Invalid email or password");
+    return;
+  }
+
+  alert("Login successful");
+  router.push("/dashboard");
+};
 
   return (
     <div className="max-w-md mx-auto mt-20">
