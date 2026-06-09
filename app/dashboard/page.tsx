@@ -35,7 +35,7 @@ export default async function Dashboard() {
       View Submissions
     </Link>
 
-    {apps.map((app) => (
+    {apps.map((app: any) => (
         <Card
   key={app.id}
   className="mb-4 hover:shadow-lg transition"
