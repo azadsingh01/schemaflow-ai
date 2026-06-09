@@ -34,6 +34,12 @@ export default async function Dashboard() {
     >
       View Submissions
     </Link>
+    <Link
+  href="/"
+  className="bg-green-600 text-white px-4 py-2 rounded-lg inline-block mb-6 ml-3"
+>
+  Create App
+</Link>
 
     {apps.map((app: any) => (
         <Card
