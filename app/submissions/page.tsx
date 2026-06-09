@@ -36,7 +36,7 @@ export default async function SubmissionsPage() {
     </thead>
 
     <tbody>
-      {submissions.map((submission) => (
+      {submissions.map((submission: any) => (
         <tr key={submission.id} className="border-b">
           <td className="p-3">
             {(submission.data as any).Name}
