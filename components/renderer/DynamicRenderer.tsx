@@ -132,6 +132,7 @@ export default function DynamicRenderer({
 
                   console.log(data);
                   alert("Form created successfully!");
+                  window.location.href = "/submissions";
                 }}
               />
             );
